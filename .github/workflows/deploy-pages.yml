@@ -14,20 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: "20"
-          cache: "npm"
+          version: 8.14.0 # 可以根据需要调整pnpm版本
 
       - name: Install dependencies
-        run: npm install --force
+        run: pnpm install --frozen-lockfile # 使用pnpm并确保依赖一致
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # 这里需要根据你的构建输出目录进行修改
+          publish_dir: ./dist # 根据你的构建输出目录进行调整
