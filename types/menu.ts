@@ -18,7 +18,7 @@ export interface Dish {
 
 export interface Menu {
   id: string;
-  mealType: "breakfast" | "lunch" | "dinner";
+  mealType: MealType;
   dishes: Dish[];
   totalCalories: number;
   totalProtein: number;

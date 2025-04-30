@@ -6,6 +6,7 @@ const breakfastDishes: Dish[] = [
     id: "b1",
     name: "豆浆",
     type: "饮品",
+    category: "饮品",
     calories: 100,
     protein: 3,
     fat: 1,
@@ -15,6 +16,7 @@ const breakfastDishes: Dish[] = [
     id: "b2",
     name: "油条",
     type: "主食",
+    category: "主食",
     calories: 300,
     protein: 8,
     fat: 15,
@@ -24,6 +26,7 @@ const breakfastDishes: Dish[] = [
     id: "b3",
     name: "鸡蛋",
     type: "荤菜",
+    category: "荤菜",
     calories: 150,
     protein: 12,
     fat: 10,
@@ -33,6 +36,7 @@ const breakfastDishes: Dish[] = [
     id: "b4",
     name: "包子",
     type: "主食",
+    category: "主食",
     calories: 250,
     protein: 6,
     fat: 5,
@@ -42,6 +46,7 @@ const breakfastDishes: Dish[] = [
     id: "b5",
     name: "粥",
     type: "主食",
+    category: "主食",
     calories: 200,
     protein: 4,
     fat: 1,
@@ -51,6 +56,7 @@ const breakfastDishes: Dish[] = [
     id: "b6",
     name: "牛奶",
     type: "饮品",
+    category: "饮品",
     calories: 120,
     protein: 8,
     fat: 5,
@@ -60,6 +66,7 @@ const breakfastDishes: Dish[] = [
     id: "b7",
     name: "面包",
     type: "主食",
+    category: "主食",
     calories: 280,
     protein: 9,
     fat: 8,
@@ -69,6 +76,7 @@ const breakfastDishes: Dish[] = [
     id: "b8",
     name: "水果沙拉",
     type: "素菜",
+    category: "素菜",
     calories: 150,
     protein: 2,
     fat: 1,
@@ -81,6 +89,7 @@ const lunchDishes: Dish[] = [
     id: "l1",
     name: "米饭",
     type: "主食",
+    category: "主食",
     calories: 200,
     protein: 4,
     fat: 0,
@@ -90,6 +99,7 @@ const lunchDishes: Dish[] = [
     id: "l2",
     name: "红烧排骨",
     type: "荤菜",
+    category: "荤菜",
     calories: 350,
     protein: 25,
     fat: 20,
@@ -99,6 +109,7 @@ const lunchDishes: Dish[] = [
     id: "l3",
     name: "清炒时蔬",
     type: "素菜",
+    category: "素菜",
     calories: 100,
     protein: 3,
     fat: 5,
@@ -108,6 +119,7 @@ const lunchDishes: Dish[] = [
     id: "l4",
     name: "番茄蛋汤",
     type: "汤品",
+    category: "汤品",
     calories: 150,
     protein: 8,
     fat: 5,
@@ -117,6 +129,7 @@ const lunchDishes: Dish[] = [
     id: "l5",
     name: "宫保鸡丁",
     type: "荤菜",
+    category: "荤菜",
     calories: 300,
     protein: 20,
     fat: 15,
@@ -126,6 +139,7 @@ const lunchDishes: Dish[] = [
     id: "l6",
     name: "麻婆豆腐",
     type: "素菜",
+    category: "素菜",
     calories: 200,
     protein: 12,
     fat: 10,
@@ -135,6 +149,7 @@ const lunchDishes: Dish[] = [
     id: "l7",
     name: "酸菜鱼",
     type: "荤菜",
+    category: "荤菜",
     calories: 280,
     protein: 22,
     fat: 12,
@@ -144,6 +159,7 @@ const lunchDishes: Dish[] = [
     id: "l8",
     name: "炒青菜",
     type: "素菜",
+    category: "素菜",
     calories: 80,
     protein: 2,
     fat: 3,
@@ -156,6 +172,7 @@ const dinnerDishes: Dish[] = [
     id: "d1",
     name: "米饭",
     type: "主食",
+    category: "主食",
     calories: 200,
     protein: 4,
     fat: 0,
@@ -165,6 +182,7 @@ const dinnerDishes: Dish[] = [
     id: "d2",
     name: "清蒸鱼",
     type: "荤菜",
+    category: "荤菜",
     calories: 250,
     protein: 30,
     fat: 10,
@@ -174,6 +192,7 @@ const dinnerDishes: Dish[] = [
     id: "d3",
     name: "炒青菜",
     type: "素菜",
+    category: "素菜",
     calories: 80,
     protein: 2,
     fat: 3,
@@ -183,6 +202,7 @@ const dinnerDishes: Dish[] = [
     id: "d4",
     name: "紫菜蛋花汤",
     type: "汤品",
+    category: "汤品",
     calories: 120,
     protein: 6,
     fat: 4,
@@ -192,6 +212,7 @@ const dinnerDishes: Dish[] = [
     id: "d5",
     name: "红烧肉",
     type: "荤菜",
+    category: "荤菜",
     calories: 400,
     protein: 25,
     fat: 30,
@@ -201,6 +222,7 @@ const dinnerDishes: Dish[] = [
     id: "d6",
     name: "蒜蓉空心菜",
     type: "素菜",
+    category: "素菜",
     calories: 90,
     protein: 3,
     fat: 4,
@@ -210,6 +232,7 @@ const dinnerDishes: Dish[] = [
     id: "d7",
     name: "蒸蛋",
     type: "荤菜",
+    category: "荤菜",
     calories: 150,
     protein: 12,
     fat: 8,
@@ -219,6 +242,7 @@ const dinnerDishes: Dish[] = [
     id: "d8",
     name: "冬瓜汤",
     type: "汤品",
+    category: "汤品",
     calories: 100,
     protein: 2,
     fat: 1,
@@ -231,6 +255,7 @@ const supperDishes: Dish[] = [
     id: "s1",
     name: "炒面",
     type: "主食",
+    category: "主食",
     calories: 400,
     protein: 12,
     fat: 15,
@@ -240,6 +265,7 @@ const supperDishes: Dish[] = [
     id: "s2",
     name: "烤串",
     type: "荤菜",
+    category: "荤菜",
     calories: 300,
     protein: 20,
     fat: 20,
@@ -249,6 +275,7 @@ const supperDishes: Dish[] = [
     id: "s3",
     name: "凉拌黄瓜",
     type: "素菜",
+    category: "素菜",
     calories: 50,
     protein: 1,
     fat: 0,
@@ -258,6 +285,7 @@ const supperDishes: Dish[] = [
     id: "s4",
     name: "麻辣烫",
     type: "小吃",
+    category: "小吃",
     calories: 350,
     protein: 15,
     fat: 18,
@@ -267,6 +295,7 @@ const supperDishes: Dish[] = [
     id: "s5",
     name: "煎饺",
     type: "主食",
+    category: "主食",
     calories: 280,
     protein: 10,
     fat: 12,
@@ -276,6 +305,7 @@ const supperDishes: Dish[] = [
     id: "s6",
     name: "烤冷面",
     type: "小吃",
+    category: "小吃",
     calories: 320,
     protein: 8,
     fat: 15,
@@ -285,6 +315,7 @@ const supperDishes: Dish[] = [
     id: "s7",
     name: "炸鸡",
     type: "荤菜",
+    category: "荤菜",
     calories: 450,
     protein: 25,
     fat: 30,
@@ -294,6 +325,7 @@ const supperDishes: Dish[] = [
     id: "s8",
     name: "水果拼盘",
     type: "素菜",
+    category: "素菜",
     calories: 120,
     protein: 2,
     fat: 1,
@@ -311,6 +343,7 @@ export function useMenu() {
     totalFat: 0,
     totalCarbs: 0,
     createdAt: Date.now(),
+    peopleCount: 1,
   });
 
   const calculateTotalNutrition = (): Nutrition => {
@@ -352,7 +385,12 @@ export function useMenu() {
   };
 
   const setMealType = (type: MealType) => {
-    if (type === "breakfast" || type === "lunch" || type === "dinner") {
+    if (
+      type === "breakfast" ||
+      type === "lunch" ||
+      type === "dinner" ||
+      type === "supper"
+    ) {
       currentMenu.value.mealType = type;
     }
   };
@@ -388,30 +426,49 @@ export function useMenu() {
       dishPool = dishPool.filter((dish) => selectedTypes.includes(dish.type));
     }
 
-    // 根据人数决定菜品数量
-    const dishCount = Math.min(Math.max(2, Math.ceil(peopleCount * 1.5)), 6);
+    // 根据人数动态决定菜品数量（更贴近国人习惯）
+    let dishCount = 0;
+    if (peopleCount === 1) {
+      dishCount = 4;
+    } else if (peopleCount <= 3) {
+      dishCount = 6;
+    } else if (peopleCount <= 6) {
+      dishCount = 8;
+    } else if (peopleCount <= 10) {
+      dishCount = 10;
+    } else {
+      dishCount = Math.min(14, Math.ceil(peopleCount * 1.2));
+    }
+    // 早餐/夜宵适当减少
+    if (mealType === "breakfast" || mealType === "supper") {
+      dishCount = Math.max(3, Math.floor(dishCount * 0.6));
+    }
+    dishCount = Math.min(dishCount, dishPool.length); // 不超过可选菜品数
 
     // 随机选择菜品
     const selectedDishes: Dish[] = [];
+    const usedIndexes = new Set<number>();
     while (selectedDishes.length < dishCount && dishPool.length > 0) {
       const randomIndex = Math.floor(Math.random() * dishPool.length);
-      const dish = dishPool[randomIndex];
-      selectedDishes.push(dish);
-      dishPool.splice(randomIndex, 1);
+      if (!usedIndexes.has(randomIndex)) {
+        const dish = dishPool[randomIndex];
+        selectedDishes.push(dish);
+        usedIndexes.add(randomIndex);
+      }
     }
 
-    // 计算总营养值
+    // 计算总营养值（每道菜建议准备 peopleCount 份）
     const totalNutrition = selectedDishes.reduce(
       (acc, dish) => ({
-        calories: acc.calories + dish.calories,
-        protein: acc.protein + dish.protein,
-        fat: acc.fat + dish.fat,
-        carbs: acc.carbs + dish.carbs,
+        calories: acc.calories + dish.calories * peopleCount,
+        protein: acc.protein + dish.protein * peopleCount,
+        fat: acc.fat + dish.fat * peopleCount,
+        carbs: acc.carbs + dish.carbs * peopleCount,
       }),
       { calories: 0, protein: 0, fat: 0, carbs: 0 }
     );
 
-    // 创建并返回菜单
+    // 创建并返回菜单，附带建议分量
     return {
       id: Date.now().toString(),
       mealType,
@@ -421,6 +478,7 @@ export function useMenu() {
       totalFat: totalNutrition.fat,
       totalCarbs: totalNutrition.carbs,
       createdAt: Date.now(),
+      peopleCount, // 新增字段，方便前端展示
     };
   };
 
