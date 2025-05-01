@@ -1,6 +1,6 @@
 export type MealType = "breakfast" | "lunch" | "dinner" | "supper";
 
-export type DishType = "荤菜" | "素菜" | "主食" | "汤品" | "小吃" | "饮品";
+export type DishType = "荤菜" | "素菜" | "主食" | "汤品" | "甜点" | "饮品";
 
 export interface Dish {
   id: string;

@@ -274,77 +274,38 @@
 </template>
 
 <script setup lang="ts">
-import type { Dish, Menu, MealType } from "~/types/menu";
+import { ref } from 'vue';
+import { useMenu } from '~/composables/useMenu';
+import { useMenuStorage } from '~/composables/useMenuStorage';
+import type { Menu, MealType, DishType, Dish } from '~/types/menu';
 
-// 状态
 const form = ref({
   peopleCount: 1,
-  mealType: "lunch" as MealType,
-  selectedTypes: [] as string[],
+  mealType: 'breakfast' as MealType,
+  selectedTypes: [] as DishType[],
 });
 
-const menu = ref<Menu | null>(null);
 const isLoading = ref(false);
+const menu = ref<Menu | null>(null);
+const history = ref<Array<{ id: string; createdAt: number; menu: Menu }>>([]);
 
-// 常量
-const dishTypes = ["荤菜", "素菜", "主食", "汤品", "小吃", "饮品"];
+const dishTypes = ['荤菜', '素菜', '汤品', '主食', '甜点', '饮品'];
 
-// 工具函数
-const getDishTypeClass = (type: string) => {
-  const classes = {
-    荤菜: "bg-red-100 text-red-800",
-    素菜: "bg-green-100 text-green-800",
-    主食: "bg-yellow-100 text-yellow-800",
-    汤品: "bg-blue-100 text-blue-800",
-    小吃: "bg-purple-100 text-purple-800",
-    饮品: "bg-indigo-100 text-indigo-800",
-  };
-  return classes[type as keyof typeof classes] || "bg-gray-100 text-gray-800";
-};
-
-const getMealTypeName = (type: MealType) => {
-  const typeMap = {
-    breakfast: "早餐",
-    lunch: "午餐",
-    dinner: "晚餐",
-    supper: "夜宵",
-  };
-  return typeMap[type];
-};
-
-// 获取依赖的组合式函数
-const { generateMenu } = useMenu();
-const {
-  favorites,
-  history,
-  addFavorite,
-  removeFavorite,
-  addToHistory,
-  clearHistory,
-} = useMenuStorage();
-
-// 方法
 const handleSubmit = async () => {
+  isLoading.value = true;
   try {
-    isLoading.value = true;
-    menu.value = generateMenu(
-      form.value.peopleCount,
-      form.value.mealType,
-      undefined,
-      form.value.selectedTypes.length > 0 ? form.value.selectedTypes : undefined
-    );
-
-    if (menu.value) {
-      addToHistory(menu.value);
-    }
+    const result = await useMenu().generateMenu(form.value.peopleCount, form.value.mealType, undefined, form.value.selectedTypes);
+    menu.value = result;
+    history.value.unshift({ id: Date.now().toString(), createdAt: Date.now(), menu: result });
   } catch (error) {
-    console.error("生成菜单失败:", error);
+    console.error('生成菜单失败:', error);
   } finally {
     isLoading.value = false;
   }
 };
 
 const toggleFavorite = (dish: Dish) => {
+  const { addFavorite, removeFavorite } = useMenuStorage();
   if (isFavorite(dish)) {
     removeFavorite(dish.id);
   } else {
@@ -353,87 +314,89 @@ const toggleFavorite = (dish: Dish) => {
 };
 
 const isFavorite = (dish: Dish) => {
+  const { favorites } = useMenuStorage();
   return favorites.value.some((f) => f.id === dish.id);
+};
+
+const clearHistory = () => {
+  const { clearHistory } = useMenuStorage();
+  clearHistory();
+};
+
+const getDishTypeClass = (type: DishType) => {
+  const classes = {
+    '荤菜': 'bg-red-100 text-red-800',
+    '素菜': 'bg-green-100 text-green-800',
+    '汤品': 'bg-blue-100 text-blue-800',
+    '主食': 'bg-yellow-100 text-yellow-800',
+    '甜点': 'bg-pink-100 text-pink-800',
+    '饮品': 'bg-purple-100 text-purple-800',
+  };
+  return classes[type] || 'bg-gray-100 text-gray-800';
+};
+
+const getMealTypeName = (type: MealType) => {
+  const names = {
+    'breakfast': '早餐',
+    'lunch': '午餐',
+    'dinner': '晚餐',
+    'supper': '夜宵',
+  };
+  return names[type] || type;
 };
 </script>
 
-<style>
-/* 基础过渡动画 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* 卡片悬浮效果 */
+<style scoped>
+/* 卡片阴影 */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s, transform 0.3s;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px 0 rgba(60, 72, 88, 0.12);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid #f3f4f6;
 }
-
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 16px 48px 0 rgba(60, 72, 88, 0.16);
 }
 
 /* 按钮动画 */
 .btn-hover {
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1px 4px 0 rgba(99, 102, 241, 0.06);
+}
+.btn-hover:active {
+  transform: scale(0.97);
+}
+.btn-hover.bg-blue-600 {
+  background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%);
+  border: none;
+}
+.btn-hover.bg-blue-600:hover {
+  background: linear-gradient(90deg, #1e40af 0%, #6366f1 100%);
 }
 
-.btn-hover:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 输入框焦点效果 */
+/* 输入框优化 */
 .input-focus {
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(60, 72, 88, 0.06);
+  border-radius: 0.75rem;
 }
-
 .input-focus:focus {
-  transform: scale(1.01);
+  border-color: #6366f1;
+  box-shadow: 0 2px 8px 0 rgba(99, 102, 241, 0.1);
 }
 
-/* 添加响应式样式 */
-@media (max-width: 640px) {
-  .grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .text-3xl {
-    font-size: 1.875rem;
-  }
-
-  .p-6 {
-    padding: 1rem;
-  }
-
-  .gap-4 {
-    gap: 0.75rem;
-  }
+/* 过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
 }
-
-/* 添加滚动条样式 */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #818cf8;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
